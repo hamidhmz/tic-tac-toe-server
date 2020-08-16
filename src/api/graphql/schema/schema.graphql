@@ -7,7 +7,7 @@ type Query {
 
 type Mutation {
   "make new move by one user"
-  move(gameId: ID!, userToken: String!, cellIndex: [[Int]!]!): Game!
+  move(gameId: ID!, userToken: String!, cellIndex: cellInput): Game!
   "make new user"
   newUser: User!
 }
@@ -21,11 +21,12 @@ type Subscription {
 
 type Game {
   id: ID!
-  firstPlayer: User!
-  secondPlayer: User!
+  firstPlayer: User
+  secondPlayer: User
   firstPlayerSign: Sign!
   secondPlayerSign: Sign!
   turn: Sign!
+  winner: Winner
   board: [[Cell!]!]!
   status: GameStatus!
 }
@@ -40,6 +41,11 @@ type GameSubscribePayload {
   data: Game!
 }
 
+input cellInput {
+  arrayNumber: Int!
+  cellNumber: Int!
+}
+
 enum MutationType {
   START
   JOINING
@@ -52,6 +58,12 @@ enum Cell {
   O
 }
 
+enum Winner {
+  DRAW
+  X
+  O
+}
+
 enum Sign {
   X
   O
@@ -59,6 +71,6 @@ enum Sign {
 
 enum GameStatus {
   OPEN
-  CLOSED
+  PLAYING
   EXITED
 }

@@ -7,10 +7,9 @@ function newUser(
 ) {
   user.uuidPack();
   const { users } = user;
-  console.log('uuidPack()', user.uuidPack());
 
   const newUserL: userType = {
-    id: users[users.length - 1].id + 1,
+    id: String(users.length + 1),
     userToken: user.uuidPack(),
   };
 

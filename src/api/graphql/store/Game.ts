@@ -1,18 +1,21 @@
 type Cell = 'EMPTY' | 'X' | 'O';
 type signType = 'X' | 'O';
-type Status = 'OPEN' | 'CLOSED' | 'EXITED';
+type Status = 'OPEN' | 'PLAYING' | 'EXITED';
+type winnerType = 'X' | 'O' | 'DRAW';
+type boardType = [[Cell, Cell, Cell], [Cell, Cell, Cell], [Cell, Cell, Cell]];
 
 type gameType = {
-  id: number;
-  firstPlayer: string | null;
-  secondPlayer: string | null;
-  firstPlayerSign: signType;
-  secondPlayerSign: signType;
+  id: string;
+  firstPlayer: string;
+  secondPlayer: string;
+  firstPlayerSign: 'X';
+  secondPlayerSign: 'O';
   turn: signType;
-  board: [[Cell, Cell, Cell], [Cell, Cell, Cell], [Cell, Cell, Cell]];
+  winner: winnerType;
+  board: boardType;
   status: Status;
 };
 
 const games: gameType[] = [];
 
-export { games, gameType };
+export { games, gameType, signType, boardType, Cell };

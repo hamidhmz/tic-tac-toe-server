@@ -1,3 +1,4 @@
 import showGames from './showGames';
+import showUsers from './showUsers';
 
-export default { showGames };
+export default { showUsers, showGames };
